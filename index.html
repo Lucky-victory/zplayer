@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
+</style>
+  <link rel="stylesheet" href="./font/icons.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="./style.css" type="text/css" media="all" />
+  <title>Audio Player | Web App</title>
+</head>
+<body>
+  <div class="zplayer " id="zplayer">
+    <div class="zplayer__header">
+      <div class="zplayer__header-title"><button class="zplayer__drop-down-btn icon-down-arrow" title="minimize player"></button>
+      <span class="zplayer__header-text"></span></div>
+      <div class="zplayer__tabs-btn-container">
+         <button class="zplayer__tabs-btn active">Songs</button> 
+         <button class="zplayer__tabs-btn">Now playing</button> 
+         <button class="zplayer__tabs-btn">Visualiser</button> 
+ </div>
+    </div>
+ 
+<div class="zplayer__tabs-container">
+      <div class="zplayer__tabs active">
+      <ul class="zplayer__songs zplayer__container">
+
+      </ul><!--   zplayer__songs -->
+    
+    </div>
+    <div class="zplayer__tabs">
+         <img  alt="" class="zplayer__player-image"> 
+
+            
+    </div>
+    <div class="zplayer__tabs">
+        
+     <div class="zplayer__visualizer ">
+        
+      </div>
+            
+    </div>
+</div>
+   <div class="zplayer__player zplayer__container">
+        <img  alt="" class="zplayer__player-minimized-image">
+  <div class="zplayer__player-icons">
+  <button class="zplayer__player-shuffle-btn" title="shuffle"></button>
+    <button class="zplayer__player-prev-btn icon-backward" title="previous song"></button>
+    <button class="zplayer__player-play-pause-btn "></button>
+    <button class="zplayer__player-next-btn icon-backward" title="next song"></button>
+    <button class="zplayer__player-repeat-btn" title="repeat"></button>
+  </div>
+  <audio preload="metadata" id="zplayerAudio"></audio>
+    <input type="range" class="zplayer__player-slider" min="0" value="0" title="seek au"/>
+ <div class="zplayer__player-inner">
+         <time class="zplayer__player-time-elapsed">00:00</time>
+      
+        <time class="zplayer__player-duration"></time>
+ </div>
+      </div>
+  </div>
+
+<script src="./main.js" type="text/javascript" charset="utf-8"></script>  
+</body>
+</html>
