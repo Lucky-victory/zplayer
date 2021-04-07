@@ -70,10 +70,7 @@ let ctx=canvas.getContext("2d");
 zplayerVisualizerCon.appendChild(canvas);
 canvas.width=zplayerVisualizerCon.offsetWidth;
 canvas.height=zplayerVisualizerCon.offsetHeight;
-const AudioCtx=window.AudioContext || window.webkitAudioContext;
-const audioCtx=new AudioCtx();
-let audioSource,analyser;
-    audioSource=audioCtx.createMediaElementSource(zplayerAudioPlayer);
+
 // zplayer minimize event
 eventHandler(zplayerMinimizeBtn,"click",function(){
     let selected=state.randomize ? state.random : state.counter;
@@ -380,6 +377,10 @@ const time=new Date(timeInSeconds * 1000).toISOString().substr(11,8);
 function eventHandler(el,evt,func){
   return  el.addEventListener(evt,func)
 }
+const AudioCtx=window.AudioContext || window.webkitAudioContext;
+const audioCtx=new AudioCtx();
+let audioSource,analyser;
+    audioSource=audioCtx.createMediaElementSource(zplayerAudioPlayer);
 function initVisualizer(){
 
   analyser=audioCtx.createAnalyser();
