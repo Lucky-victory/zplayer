@@ -3,34 +3,34 @@ const musicArray=[
   {
     title:"Angels like you",
     artist:"Miley Cyprus",
-    url:"./songs/angels-like-you.mp3",
+    url:"/songs/angels-like-you.mp3",
     cover:"./images/alan-walker.jpeg"
   },{
     title:"Alone",
     artist:"Alan walker",
-    url:"./songs/alone.mp3",
+    url:"/songs/alone.mp3",
     cover:"./images/alan-walker.jpeg"
   },{
     title:"Ah blem blem",
     artist:"Timaya",
-    url:"./songs/ah-blem-blem.mp3",
+    url:"/songs/ah-blem-blem.mp3",
     cover:"./images/timaya.jpeg"
   },
     {
     title:"Sing me to sleep",
     artist:"Alan walker",
-    url:"./songs/sing-me-to-sleep.mp3",
+    url:"/songs/sing-me-to-sleep.mp3",
     cover:"./images/alan-walker.jpeg"
   },
     {
     title:"A better place to live",
     artist:"dolly parton",
-    url:"./songs/a-better-place-to-live.mp3",
+    url:"/songs/a-better-place-to-live.mp3",
     cover:"./images/dolly-parton.jpeg"
   }, {
     title:"You can't reach me anymore ",
     artist:"dolly parton",
-    url:"./songs/you-cant-reach-me-anymore.mp3",
+    url:"/songs/you-cant-reach-me-anymore.mp3",
     cover:"./images/dolly-parton.jpeg"
   }
   ];
@@ -39,8 +39,8 @@ const state={
   repeat:false,
   random:0,
   randomize:false,
-   mouseX:undefined,
-   mouseY:undefined,
+  // mouseX:undefined,
+  // mouseY:undefined,
 }
 
 const zplayer=document.querySelector("#zplayer");
@@ -70,7 +70,6 @@ let ctx=canvas.getContext("2d");
 zplayerVisualizerCon.appendChild(canvas);
 canvas.width=zplayerVisualizerCon.offsetWidth;
 canvas.height=zplayerVisualizerCon.offsetHeight;
-
 // zplayer minimize event
 eventHandler(zplayerMinimizeBtn,"click",function(){
     let selected=state.randomize ? state.random : state.counter;
@@ -123,7 +122,7 @@ zplayerSingleSongs.map((zplayerSingleSong,index)=>{
     zplayerAudioPlayer.play();
   });
 });
-/*_Uncomment the following lines below to make the player draggable.*/
+/*_Uncomment line 51 & 52 and the following lines below to make the player draggable.*/
 // eventHandler(zplayer,"touchmove",function(e){
 //   state.mouseX=e.targetTouches[0].clientX;
 //   state.mouseY=e.targetTouches[0].clientY;
@@ -137,90 +136,6 @@ zplayerSingleSongs.map((zplayerSingleSong,index)=>{
 //   zplayer.style.top=`${state.mouseY}px`;
 //   zplayer.style.left=`${state.mouseX}px`;
 //   });
-
-eventHandler(window,"DOMContentLoaded",initialize_ZPlayer);
-function initialize_ZPlayer(){
-  let selected=state.randomize ? state.random : state.counter;
-  setHeaderText(selected);
-  setPlayerImage(selected);
-  zplayerAudioPlayer.src=musicArray[selected].url;
-classNameAdd(zplayerSingleSongs[selected],"playing");
-}
-
-function nextSong(){
-  let selected;
-  if(!state.randomize){
-    state.counter++;
-  state.counter >= musicArray.length ?
-    state.counter=0:"";
-  selected=state.counter;
-}
-else if(state.randomize){
-  randomNumber();
-  selected=state.random;
-}
-  chooseNextSong(selected);
-  classNameAdd(zplayerPlayerNextBtn,"clickEffect");
-  classNameRemove(zplayerPlayerNextBtn,"clickEffect",300,);
-}
-function previousSong(){
-  let selected;
-if(!state.randomize){
-    state.counter--;
-  state.counter < 0?
-    state.counter=musicArray.length-1:"";
-  selected=state.counter;
-}
-else if(state.randomize){
-  randomNumber();
-  selected=state.random;
-}
-  chooseNextSong(selected);
-    classNameAdd(zplayerPlayerPrevBtn,"clickEffect");
-  classNameRemove(zplayerPlayerPrevBtn,"clickEffect",300,);
-}
-function sliderFunc(e){
-  
-  zplayerAudioPlayer.currentTime=e.target.value;
-    const percent=Math.floor((100/zplayerAudioPlayer.duration)*zplayerAudioPlayer.currentTime);
-  const bgColor=`linear-gradient(90deg,#7b8 ${percent}%,#fff6 ${percent}%)`;
-  zplayerPlayerSlider.style.background=bgColor;
-}
-eventHandler(zplayerAudioPlayer,"ended",function(){
-  let selected=state.randomize? state.random : state.counter;
-    if(!state.randomize && state.repeat){
-  repeatAllSongs();
-chooseNextSong(selected);
-  
-  
-
-}
-else if(state.randomize){
-  randomNumber();
-  chooseNextSong(selected);
-//   if(state.repeat){
-//   repeatAllSongs();
-// chooseNextSong(selected);
-  
-// }
-}
-else{
-  zplayerAudioPlayer.pause();
-  zplayerAudioPlayer.currentTime=0;
-  
-}
-
-});
-
-function chooseNextSong(selected){
-    zplayerAudioPlayer.src=musicArray[selected].url;
- setHeaderText(selected);
- setPlayerImage(selected);
-  zplayerAudioPlayer.load();
-  zplayerAudioPlayer.play();
-  classNameRemove(zplayer.querySelector(".playing"),"playing");
-  classNameAdd(zplayerSingleSongs[selected],"playing");
-}
 eventHandler(zplayerPlayerShuffleBtn,"click",shuffleSongs);
 function shuffleSongs(){
   if(!state.randomize){
@@ -235,8 +150,93 @@ function shuffleSongs(){
   
   
 }
+function repeatAllSongs(){
+  state.counter++;
+      if(state.counter >= musicArray.length){
+    state.counter=0;
+  }
+}
+eventHandler(window,"DOMContentLoaded",initialize_ZPlayer);
+function initialize_ZPlayer(){
+  let selected=state.randomize ? state.random : state.counter;
+  setHeaderText(selected);
+  setPlayerImage(selected);
+  zplayerAudioPlayer.src=musicArray[selected].url;
+classNameAdd(zplayerSingleSongs[selected],"playing");
+}
+// this functions selects the next song
+function nextSong(){
+  let selected;
+  if(!state.randomize){
+    state.counter++;
+  state.counter >= musicArray.length ?
+    state.counter=0:"";
+  selected=state.counter;
+}
+else if(state.randomize){
+  randomNumber();
+  selected=state.random;
+}
+  chooseNextSong(selected);
+  classNameAdd(zplayerPlayerNextBtn,"clickEffect");
+  classNameRemove(zplayerPlayerNextBtn,"clickEffect",300);
+}
+// this functions selects the previous song
+function previousSong(){
+  let selected;
+if(!state.randomize){
+    state.counter--;
+  state.counter < 0?
+    state.counter=musicArray.length-1:"";
+  selected=state.counter;
+}
+else if(state.randomize){
+  randomNumber();
+  selected=state.random;
+}
+  chooseNextSong(selected);
+    classNameAdd(zplayerPlayerPrevBtn,"clickEffect");
+  classNameRemove(zplayerPlayerPrevBtn,"clickEffect",300);
+}
+function sliderFunc(e){
+  
+  zplayerAudioPlayer.currentTime=e.target.value;
+    const percent=Math.floor((100/zplayerAudioPlayer.duration)*zplayerAudioPlayer.currentTime);
+  const bgColor=`linear-gradient(90deg,#7b8 ${percent}%,#fff6 ${percent}%)`;
+  zplayerPlayerSlider.style.background=bgColor;
+}
+eventHandler(zplayerAudioPlayer,"ended",function(){
+  let selected=state.randomize? state.random : state.counter;
+  if(state.repeat){
+  repeatAllSongs();
+chooseNextSong(selected);
+
+}
+else if(state.randomize){
+  randomNumber();
+  chooseNextSong(selected);
+  
+}
+else{
+  zplayerAudioPlayer.pause();
+  zplayerAudioPlayer.currentTime=0;
+}
+
+});
+
+function chooseNextSong(selected){
+    zplayerAudioPlayer.src=musicArray[selected].url;
+ setHeaderText(selected);
+ setPlayerImage(selected);
+  zplayerAudioPlayer.load();
+  zplayerAudioPlayer.play();
+  classNameRemove(zplayer.querySelector(".playing"),"playing");
+  classNameAdd(zplayerSingleSongs[selected],"playing");
+}
+
 function randomNumber(){
     state.random =Math.floor(Math.random() * musicArray.length);
+    state.counter=state.random;
 }
 eventHandler(zplayerPlayerRepeatBtn,"click",repeatSong);
 function repeatSong(e){
@@ -249,28 +249,23 @@ function repeatSong(e){
   }
   else if(looper){
       classNameChange(zplayerPlayerRepeatBtn,"zplayer__player-repeat-btn repeat-all");
-    zplayerAudioPlayer.loop=false;
         state.repeat=true;
+    zplayerAudioPlayer.loop=false;
   } 
   else{
     state.repeat=false
-    // zplayerAudioPlayer.loop=false;
+    zplayerAudioPlayer.loop=false;
     classNameChange(zplayerPlayerRepeatBtn,"zplayer__player-repeat-btn")
   }
   
 }
-function repeatAllSongs(){
-  state.counter++;
-      if(state.counter >= musicArray.length){
-    state.counter=0;
-  }
-}
+
 
 eventHandler(zplayerAudioPlayer,"play",function(){
         titleChange(zplayerPlayPauseBtn,"pause");
   classNameAdd(zplayerPlayPauseBtn,"paused");
-// uncomment the line below to initialize the visualizer 
-  //   initVisualizer();
+  /**** Uncomment this to initialize the visualizer ****/
+  // initVisualizer();
   
 });
 eventHandler(zplayerAudioPlayer,"pause",function(){
@@ -290,14 +285,14 @@ eventHandler(zplayerPlayPauseBtn,"click",function(){
        titleChange(this,"play");
     zplayerAudioPlayer.pause();
   }
-    classNameAdd(this,"clickEffect",0);
-  classNameRemove(this,"clickEffect",300,);
+    classNameAdd(this,"clickEffect");
+  classNameRemove(this,"clickEffect",300);
   });
   eventHandler(zplayerAudioPlayer,"loadedmetadata",function(){
     
     const audioDuration=Math.round(zplayerAudioPlayer.duration);
     const time=formatTime(audioDuration);
-      zplayerPlayerSlider.setAttribute("max",zplayerAudioPlayer.duration);
+      zplayerPlayerSlider.setAttribute("max",audioDuration);
 updateDuration(time);
     
   });
@@ -376,12 +371,12 @@ const time=new Date(timeInSeconds * 1000).toISOString().substr(11,8);
 function eventHandler(el,evt,func){
   return  el.addEventListener(evt,func)
 }
-
-// uncomment the following lines to start the visualizer
+// Uncomment the following lines to start the visualizer 
 // const AudioCtx=window.AudioContext || window.webkitAudioContext;
 // const audioCtx=new AudioCtx();
 // let audioSource,analyser;
 //     audioSource=audioCtx.createMediaElementSource(zplayerAudioPlayer);
+//     // Visualizer function
 // function initVisualizer(){
 
 //   analyser=audioCtx.createAnalyser();
@@ -396,13 +391,14 @@ function eventHandler(el,evt,func){
 //     x=0;
 //     ctx.clearRect(0,0,canvas.width,canvas.height);
 //     analyser.getByteFrequencyData(dataArray);
-//      drawVisualizer(bufferLength,x,barHeight,barWidth,dataArray);
+//     drawVisualizer(bufferLength,x,barHeight,barWidth,dataArray);
 //     requestAnimationFrame(animate)
 //   }
 //   animate();
 // }
+// // draw canvas for the visualizer;
 // function drawVisualizer(bufferLength,x,barHeight,barWidth,dataArray){
-//      for( let i=0;i < bufferLength;i++) {
+//     for( let i=0;i < bufferLength;i++) {
 //       barHeight=dataArray[i] * 0.7;
 //   ctx.save();
 //   ctx.translate(canvas.width/2,canvas.height/2);
