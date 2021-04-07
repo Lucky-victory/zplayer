@@ -3,34 +3,34 @@ const musicArray=[
   {
     title:"Angels like you",
     artist:"Miley Cyprus",
-    url:"/songs/angels-like-you.mp3",
+    url:"./songs/angels-like-you.mp3",
     cover:"./images/alan-walker.jpeg"
   },{
     title:"Alone",
     artist:"Alan walker",
-    url:"/songs/alone.mp3",
+    url:"./songs/alone.mp3",
     cover:"./images/alan-walker.jpeg"
   },{
     title:"Ah blem blem",
     artist:"Timaya",
-    url:"/songs/ah-blem-blem.mp3",
+    url:"./songs/ah-blem-blem.mp3",
     cover:"./images/timaya.jpeg"
   },
     {
     title:"Sing me to sleep",
     artist:"Alan walker",
-    url:"/songs/sing-me-to-sleep.mp3",
+    url:"./songs/sing-me-to-sleep.mp3",
     cover:"./images/alan-walker.jpeg"
   },
     {
     title:"A better place to live",
     artist:"dolly parton",
-    url:"/songs/a-better-place-to-live.mp3",
+    url:"./songs/a-better-place-to-live.mp3",
     cover:"./images/dolly-parton.jpeg"
   }, {
     title:"You can't reach me anymore ",
     artist:"dolly parton",
-    url:"/songs/you-cant-reach-me-anymore.mp3",
+    url:"./songs/you-cant-reach-me-anymore.mp3",
     cover:"./images/dolly-parton.jpeg"
   }
   ];
@@ -39,8 +39,8 @@ const state={
   repeat:false,
   random:0,
   randomize:false,
-  // mouseX:undefined,
-  // mouseY:undefined,
+   mouseX:undefined,
+   mouseY:undefined,
 }
 
 const zplayer=document.querySelector("#zplayer");
@@ -125,7 +125,7 @@ zplayerSingleSongs.map((zplayerSingleSong,index)=>{
     zplayerAudioPlayer.play();
   });
 });
-/*_Uncomment line 51 & 52 and the following lines below to make the player draggable.*/
+/*_Uncomment the following lines below to make the player draggable.*/
 // eventHandler(zplayer,"touchmove",function(e){
 //   state.mouseX=e.targetTouches[0].clientX;
 //   state.mouseY=e.targetTouches[0].clientY;
