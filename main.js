@@ -39,8 +39,8 @@ const state={
   repeat:false,
   random:0,
   randomize:false,
-  // mouseX:undefined,
-  // mouseY:undefined,
+   mouseX:undefined,
+   mouseY:undefined,
 }
 
 const zplayer=document.querySelector("#zplayer");
@@ -122,7 +122,7 @@ zplayerSingleSongs.map((zplayerSingleSong,index)=>{
     zplayerAudioPlayer.play();
   });
 });
-/*_Uncomment line 51 & 52 and the following lines below to make the player draggable.*/
+/*_Uncomment the following lines below to make the player draggable.*/
 // eventHandler(zplayer,"touchmove",function(e){
 //   state.mouseX=e.targetTouches[0].clientX;
 //   state.mouseY=e.targetTouches[0].clientY;
