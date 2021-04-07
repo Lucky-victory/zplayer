@@ -188,28 +188,27 @@ function sliderFunc(e){
 }
 eventHandler(zplayerAudioPlayer,"ended",function(){
   let selected=state.randomize? state.random : state.counter;
-  if(!state.randomize){
-    state.counter++;
-  state.counter >= musicArray.length?
-    state.counter=0:"";
-  chooseNextSong(selected);
     if(!state.randomize && state.repeat){
   repeatAllSongs();
 chooseNextSong(selected);
   
-  }
+  
 
 }
 else if(state.randomize){
   randomNumber();
   chooseNextSong(selected);
-   if(state.repeat){
-  repeatAllSongs();
-chooseNextSong(selected);
+//   if(state.repeat){
+//   repeatAllSongs();
+// chooseNextSong(selected);
+  
+// }
+}
+else{
+  zplayerAudioPlayer.pause();
+  zplayerAudioPlayer.currentTime=0;
   
 }
-}
-
 
 });
 
@@ -250,12 +249,12 @@ function repeatSong(e){
   }
   else if(looper){
       classNameChange(zplayerPlayerRepeatBtn,"zplayer__player-repeat-btn repeat-all");
-        state.repeat=true;
     zplayerAudioPlayer.loop=false;
+        state.repeat=true;
   } 
   else{
     state.repeat=false
-    zplayerAudioPlayer.loop=false;
+    // zplayerAudioPlayer.loop=false;
     classNameChange(zplayerPlayerRepeatBtn,"zplayer__player-repeat-btn")
   }
   
