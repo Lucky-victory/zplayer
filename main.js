@@ -271,7 +271,7 @@ function repeatAllSongs(){
 eventHandler(zplayerAudioPlayer,"play",function(){
         titleChange(zplayerPlayPauseBtn,"pause");
   classNameAdd(zplayerPlayPauseBtn,"paused");
-  initVisualizer();
+//   initVisualizer();
   
 });
 eventHandler(zplayerAudioPlayer,"pause",function(){
