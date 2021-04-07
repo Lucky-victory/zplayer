@@ -1,0 +1,45 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("./flaticon.ttf?9a93084366587d0d18b441c975079076") format("truetype"),
+url("./flaticon.woff?9a93084366587d0d18b441c975079076") format("woff"),
+url("./flaticon.woff2?9a93084366587d0d18b441c975079076") format("woff2"),
+url("./flaticon.eot?9a93084366587d0d18b441c975079076#iefix") format("embedded-opentype"),
+url("./flaticon.svg?9a93084366587d0d18b441c975079076#flaticon") format("svg");
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    /* line-height: 1; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    vertical-align: baseline;
+}
+
+.icon-backward:before {
+    content: "\f101";
+}
+.icon-down-arrow-1:before {
+    content: "\f102";
+}
+.icon-down-arrow:before {
+    content: "\f103";
+}
+.icon-forward:before {
+    content: "\f104";
+}
+.icon-pause:before {
+    content: "\f105";
+}
+.icon-play:before {
+    content: "\f106";
+}
+.icon-repeat:before {
+    content: "\f107";
+}
+.icon-shuffle:before {
+    content: "\f108";
+}
