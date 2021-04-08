@@ -266,7 +266,7 @@ eventHandler(zplayerAudioPlayer,"play",function(){
         titleChange(zplayerPlayPauseBtn,"pause");
   classNameAdd(zplayerPlayPauseBtn,"paused");
   /**** Uncomment this to initialize the visualizer ****/
- // initVisualizer();
+  // initVisualizer();
   
 });
 eventHandler(zplayerAudioPlayer,"pause",function(){
@@ -373,7 +373,7 @@ function eventHandler(el,evt,func){
   return  el.addEventListener(evt,func)
 }
 // Uncomment the following lines to start the visualizer 
-const AudioCtx=window.AudioContext || window.webkitAudioContext;
+// const AudioCtx=window.AudioContext || window.webkitAudioContext;
 // const audioCtx=new AudioCtx();
 // let audioSource,analyser;
 //     audioSource=audioCtx.createMediaElementSource(zplayerAudioPlayer);
@@ -411,3 +411,4 @@ const AudioCtx=window.AudioContext || window.webkitAudioContext;
 //     ctx.restore();
 //     } 
 // }
+
